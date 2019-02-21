@@ -33,7 +33,6 @@ routerPlants.get('/', async(req,res)=>{
 routerPlants.post('/',async(req,res)=>{
     try {
         const plantData = req.body;
-        console.log(plantData);
         const newPlant = await useCasePlants.createPlant(plantData);
         res.json({
             success:true,

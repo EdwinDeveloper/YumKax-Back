@@ -5,6 +5,7 @@ const { routerUsers } = require('./routes/users');
 const  routerCrops  = require('./routes/crops').routerCrops;
 const { routerPlants } = require('./routes/plants');
 const routerMachines = require('./routes/machines').routerMachines;
+const { routerStories } = require('./routes/stories');
 const routerAuth = require('./routes/auth').routerAuth;
 const cors=require('cors');
 /*Asignamos el valor del metodo de express en una variable (app)*/
@@ -16,6 +17,7 @@ app.use('/users',routerUsers);
 app.use('/crops',routerCrops);
 app.use('/plants',routerPlants);
 app.use('/machines',routerMachines);
+app.use('/stories',routerStories);
 
 //const users = require('./useCases/users');
 /*Habilitamos la ruta de la raiz de nuestra API*/

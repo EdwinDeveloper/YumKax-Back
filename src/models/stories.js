@@ -2,14 +2,23 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const stories = new Schema({
-    nutriens:{
+    begDate:{
         required:true,
-        type:[Object]
+        type:Date
     },
-    date:{
+    actual:{
         required:true,
-        type:Date,
-        
+        type:Number
+    },
+    perfect:{
+        required:true,
+        type:Number
+    },
+    id_crops:{
+        required:true,
+        type:String,
+        minlength:1,
+        maxlength:61
     }
 });
 
