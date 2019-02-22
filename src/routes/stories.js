@@ -55,6 +55,7 @@ routerStories.post('/',async(req,res)=>{
     try{
         const dataStory = req.body;
         const newStoryCrop = await useCasesStories.newStoryCrop(dataStory);
+
         res.json({
             success:true,
             message:"Story Created",
@@ -67,7 +68,7 @@ routerStories.post('/',async(req,res)=>{
         res.status(404);
         res.json({
             success:false,
-            message:"Could not create the story",
+            message:"Could not create the story, verify the information",
             error:[
                 error
             ]

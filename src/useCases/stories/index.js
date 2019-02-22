@@ -16,8 +16,7 @@ const newStoryCrop = async (storyData)=>{
         _id:storyData.id_crops
     }
     const verifyCrop = await useCaseCrop.findAnyCrops(datoCrop);
-    //console.log("Resultado",verifyCrop);
-    //if(verifyCrop.length<=0) throw new Error("The crop does not exits");
+    if(verifyCrop==null) throw new Error("Crop does not exist");
     const newStory = new storiesModel(storyData);
     const storyCreated = newStory.save();
     return storyCreated;
