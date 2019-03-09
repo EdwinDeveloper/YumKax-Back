@@ -7,6 +7,7 @@ const useCaseCrops=require('../useCases/crops');
 
 routerAuth.post('/login',async(req,res)=>{
     try {
+        
         const { email , password } = req.body;
         console.log(email,password);
         const user_info = await useCaseUsers.loginUser(email,password);

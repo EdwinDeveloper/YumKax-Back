@@ -2,10 +2,6 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const stories = new Schema({
-    begDate:{
-        required:true,
-        type:Date
-    },
     actual:{
         required:true,
         type:Number
@@ -14,7 +10,18 @@ const stories = new Schema({
         required:true,
         type:Number
     },
+    date:{
+        required:true,
+        type:Date,
+        minlength:1
+    },
     id_crops:{
+        required:true,
+        type:String,
+        minlength:1,
+        maxlength:61
+    },
+    id_user:{
         required:true,
         type:String,
         minlength:1,

@@ -10,10 +10,7 @@ const getAllCrops = async ()=>{
 
 const getPerUserCrops = async (cropId)=>{
     const findUser = await userModel.find({"_id":cropId}).exec();
-    //console.log(findUser);
-    if(findUser.length==0) return "USER DOES NOT EXIST";
-    //console.log(cropId);
-    //console.log(cropId._id);
+    if(findUser.length<=0) return "USER DOES NOT EXIST";
     const userCrops = await cropsModel.find({"id_user":cropId}).exec();
     if(userCrops.length == 0) return "NO CROPS TO THIS USER";
     return userCrops;

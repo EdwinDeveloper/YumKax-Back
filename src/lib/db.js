@@ -5,7 +5,7 @@ const mongoose = require('mongoose')
 const connect = () =>  new Promise((resolve, reject) => {
     /*Utilizamos el metodo de mongoose connect y le pasamos
     nuestra ruta de la base de datos*/
-    mongoose.connect('mongodb://localhost/Yumkaax', {
+    mongoose.connect('mongodb://Edwin:12345678a@ds037234.mlab.com:37234/yumkax', {
       /*Le asignamos a la variable useNewUrlParser el valor de tru
       para evitar error por default en consola*/
       useNewUrlParser: true

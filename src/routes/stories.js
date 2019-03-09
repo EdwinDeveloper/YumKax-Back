@@ -30,7 +30,6 @@ routerStories.get('/all',async(req,res)=>{
 
 routerStories.post('/crop',async(req,res)=>{
     try{
-        console.log(req.body);
         const cropStories = await useCasesStories.getCropsStories(req.body);
         res.json({
             success:true,
@@ -76,7 +75,28 @@ routerStories.post('/',async(req,res)=>{
     }
 });
 
-routerStories.post('/');
+routerStories.post('/user',async(req,res)=>{
+    try{
+        const userData = req.body;
+        const userCropInfo = await useCasesStories.UserCropActiveInformation(userData);
+        res.json({
+            success:true,
+            message:"User Activa Crop Active",
+            payload:{
+                userCropInfo
+            }
+        });
+    }catch(error){
+        res.status(404);
+        res.json({
+            message:false,
+            message:"Could not find the data",
+            error:[
+                error
+            ]
+        });
+    }
+});
 
 module.exports = {
     routerStories

@@ -7,7 +7,7 @@ const useCaseMachine = require('../useCases/machines');
 const useCaseCrops = require('../useCases/crops');
 const jwt = require('../lib/jwt');
 const auth = require('../middlewares/auth');
-routerUsers.use(auth);
+//routerUsers.use(auth);
 
 routerUsers.post('/userInfo',async(req,res)=>{
     const token = await jwt.verify(req.headers.authorization);
