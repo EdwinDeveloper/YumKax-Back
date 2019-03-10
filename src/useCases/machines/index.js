@@ -26,6 +26,12 @@ const findMachine = async (idMachine)=>{
     return machineSelected;
 }
 
+const findInfoMachine = async(data)=>{
+    const machineFound = await machinesModel.find(data).exec();
+    console.log("Se encontreo",machineFound);
+    return machineFound;
+}
+
 const checkuseStatusMachine =  async(machineData)=>{
     const {useStatus} = machineData[0];
     if(useStatus=="true") throw new Error("MACHINE IN USE");
@@ -102,7 +108,7 @@ const assignMachine = async (dataMachine,_id)=>{
     },[]);
     /*Si existinSerial tiene algo dentro por ende el serial introducido marca
     error y no deja asignarlo al usuario*/
-    if(existingSerial.length > 0) return 'MACHINE ALREADY ASSIGNED';
+    if(existingSerial.length > 0) throw new Error('MACHINE ALREADY ASSIGNED');
     /*Si el usuario no lo tiene asignado, se añade el serial nuevo al array
     de seriales*/
     const allIdMachine = [...SerialMachines,serial_number];
@@ -132,7 +138,7 @@ const assignMachine = async (dataMachine,_id)=>{
             //console.log(updateMachine);
             return updateMachine;
         }else{
-            return "MACHINE DOES NOT EXIST"
+            throw new Error("MACHINE DOES NOT EXIST");
         }
 }
 
@@ -201,5 +207,6 @@ module.exports = {
     checkuseStatusMachine,
     checkAssignToUser,
     checkRecordStatus,
-    updateRecordStatusMachine
+    updateRecordStatusMachine,
+    findInfoMachine
 }

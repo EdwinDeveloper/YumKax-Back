@@ -108,6 +108,30 @@ routerMachines.post('/',async(req,res)=>{
         });
     }
 });
+
+routerMachines.post('/verify',async(req,res)=>{
+    try{
+        const machineData = req.body;
+        console.log("hola",machineData);
+        const machine = await machineUserCase.findInfoMachine(machineData);
+        res.json({
+            success:true,
+            message:"Machine founded",
+            payload:{
+                machine
+            }
+        });
+    }catch(error){
+        res.error(404);
+        res.json({
+            success:false,
+            message:"Could not found the machine",
+            error:[
+                error
+            ]
+        });
+    }
+});
 routerMachines.delete('/:id',(req,res)=>{
     try {
         const { id } = req.params;
