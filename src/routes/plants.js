@@ -30,6 +30,29 @@ routerPlants.get('/', async(req,res)=>{
     }
 });
 
+routerPlants.post('/verify',async(req,res)=>{
+    try{
+        const data = req.body;
+        const plant = await useCasePlants.getPlantInformation(data.id_plant);
+        res.json({
+            success:true,
+            message:"Information of the plant",
+            payload:{
+                plant
+            }
+        });
+    }catch(error){
+        res.status(404);
+        res.json({
+            success:false,
+            message:"Could not show the plant information",
+            error:[
+                error
+            ]
+        });
+    }
+});
+
 routerPlants.post('/',async(req,res)=>{
     try {
         const plantData = req.body;

@@ -28,7 +28,14 @@ const findMachine = async (idMachine)=>{
 
 const findInfoMachine = async(data)=>{
     const machineFound = await machinesModel.find(data).exec();
-    console.log("Se encontreo",machineFound);
+    if(machineFound.length<1) throw new Error("Machine do not found");
+    return machineFound;
+}
+
+const findInfoMachineByUser = async (idUser)=>{
+    const machineFound = await machinesModel.find(idUser).exec();
+    if(machineFound.length<1) throw new Error("No Machines assigned to the user");
+
     return machineFound;
 }
 
@@ -208,5 +215,6 @@ module.exports = {
     checkAssignToUser,
     checkRecordStatus,
     updateRecordStatusMachine,
-    findInfoMachine
+    findInfoMachine,
+    findInfoMachineByUser
 }

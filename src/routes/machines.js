@@ -112,7 +112,6 @@ routerMachines.post('/',async(req,res)=>{
 routerMachines.post('/verify',async(req,res)=>{
     try{
         const machineData = req.body;
-        console.log("hola",machineData);
         const machine = await machineUserCase.findInfoMachine(machineData);
         res.json({
             success:true,
@@ -132,6 +131,33 @@ routerMachines.post('/verify',async(req,res)=>{
         });
     }
 });
+
+routerMachines.post('/userMachines',async(req,res)=>{
+    try{
+        const idUser = await jwt.verify(req.headers.authorization);
+        const data={
+            id_user:idUser.id
+        }
+        const machine = await machineUserCase.findInfoMachineByUser(data);
+        res.json({
+            success:true,
+            message:"Machines assigned to the user",
+            payload:{
+                machine
+            }
+        });
+    }catch(error){
+        res.status(404);
+        res.json({
+            success:false,
+            message:"Could not show the machines assigned to the user",
+            error:[
+                error
+            ]
+        });
+    }
+});
+
 routerMachines.delete('/:id',(req,res)=>{
     try {
         const { id } = req.params;
